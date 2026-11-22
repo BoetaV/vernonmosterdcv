@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vernon Mosterd · Full-Stack &amp; Frontend Engineer · AI-Assisted Delivery</title>
+<meta name="description" content="Vernon Mosterd: full-stack engineer with a strong frontend and UI focus (React, Next.js, TypeScript, Tailwind, accessibility, 3D and motion) building production systems with Claude Code. 28 years in regulated public-sector health IT.">
+<meta property="og:title" content="Vernon Mosterd · Full-Stack &amp; Frontend Engineer">
+<meta property="og:description" content="React · Next.js · TypeScript · Tailwind · WCAG 2.1 AA · PostgreSQL · GitHub Actions · Claude Code">
+<meta name="theme-color" content="#040b24">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1'%3E%3Cstop offset='0' stop-color='%232f7bff'/%3E%3Cstop offset='1' stop-color='%23ff3355'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='%23071640'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='700' font-size='28' text-anchor='middle' fill='url(%23g)'%3EVM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#040b24; --bg-2:#071640; --navy:#0a1f5c; --navy-2:#102a78;
+  --blue:#2f7bff; --blue-2:#5aa2ff; --sky:#8cc8ff; --ice:#d6e8ff;
+  --red:#ff3355; --red-2:#ff6b81;
+  --panel:rgba(16,38,102,.42); --panel-2:rgba(22,50,130,.55);
+  --line:rgba(140,190,255,.14); --line-2:rgba(140,190,255,.26);
+  --ink:#f2f6ff; --ink-2:#aebde0; --ink-3:#7083ad;
+  --grad:linear-gradient(100deg,var(--sky) 0%,var(--blue) 35%,var(--red) 62%,var(--blue-2) 100%);
+  --display:"Space Grotesk","Inter Tight",system-ui,sans-serif;
+  --sans:"Inter Tight",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  --r:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--red);color:#fff}
+:focus-visible{outline:2px solid var(--sky);outline-offset:3px;border-radius:6px}
+
+/* ambient light */
+body::before{content:"";position:fixed;inset:0;z-index:-3;pointer-events:none;
+  background:
+   radial-gradient(1000px 700px at 85% -10%,rgba(47,123,255,.35),transparent 60%),
+   radial-gradient(800px 600px at -10% 35%,rgba(16,42,120,.9),transparent 65%),
+   radial-gradient(700px 500px at 50% 55%,rgba(255,51,85,.10),transparent 60%),
+   radial-gradient(900px 700px at 100% 100%,rgba(47,123,255,.22),transparent 60%),
+   linear-gradient(180deg,#05102e,#040b24 40%,#06123a)}
+body::after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.spot{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(520px 520px at var(--cx,50%) var(--cy,30%),rgba(90,162,255,.10),transparent 60%)}
+.progress{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(var(--p,0));background:var(--grad);z-index:60;box-shadow:0 0 14px rgba(255,51,85,.6)}
+
+.wrap{width:min(1180px,100% - 48px);margin-inline:auto}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--sky);display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:22px;height:2px;background:linear-gradient(90deg,var(--blue),var(--red));border-radius:2px}
+h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-.02em}
+.gt{background:var(--grad);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 8s ease-in-out infinite}
+@keyframes sheen{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+/* nav */
+nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:4px;
+  padding:6px 6px 6px 16px;border:1px solid var(--line-2);border-radius:999px;background:rgba(6,18,58,.62);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);box-shadow:0 10px 40px rgba(0,8,40,.55)}
+nav .mark{font-family:var(--display);font-weight:700;font-size:18px;margin-right:10px}
+nav a.l{font-size:13.5px;color:var(--ink-2);padding:8px 12px;border-radius:999px;transition:.25s}
+nav a.l:hover,nav a.l.on{color:var(--ink);background:rgba(90,162,255,.14)}
+nav a.cta{font-size:13.5px;font-weight:600;color:#fff;background:linear-gradient(120deg,var(--blue),#1d4fd8 55%,var(--red));padding:8px 16px;border-radius:999px;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 6px 18px rgba(47,123,255,.4)}
+@media (max-width:820px){nav a.l{display:none}}
+
+/* hero */
+.hero{position:relative;min-height:min(100vh,1000px);display:grid;align-items:center;padding:120px 0 90px;overflow:hidden;isolation:isolate}
+#gl{position:absolute;inset:0;width:100%;height:100%;z-index:-1;display:block}
+.floor{position:absolute;left:-50%;right:-50%;bottom:-40%;height:80%;transform:perspective(900px) rotateX(76deg);transform-origin:50% 0;z-index:-2;
+  background-image:linear-gradient(rgba(90,162,255,.22) 1px,transparent 1px),linear-gradient(90deg,rgba(90,162,255,.22) 1px,transparent 1px);
+  background-size:64px 64px;animation:floor 6s linear infinite;
+  -webkit-mask-image:linear-gradient(to bottom,transparent,#000 25%,#000 55%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 25%,#000 55%,transparent)}
+@keyframes floor{to{background-position:0 64px}}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+@media (max-width:960px){.hero-grid{grid-template-columns:1fr}.hero-aside{display:none}#gl{opacity:.38}}
+.hero h1{font-size:clamp(56px,8.6vw,120px);line-height:.9;margin:20px 0 24px;letter-spacing:-.045em;font-weight:700}
+.role{font-size:clamp(18px,2vw,22px);color:var(--ink);font-weight:500;max-width:34ch;line-height:1.35}
+.role span{color:var(--ink-2)}
+.typed{font-family:var(--mono);font-size:14px;color:var(--sky);margin-top:14px;min-height:1.6em}
+.typed::after{content:"▍";color:var(--red);margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.lede{color:var(--ink-2);max-width:58ch;margin-top:14px;font-size:16.5px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.chip{font-family:var(--mono);font-size:12px;color:var(--ice);border:1px solid var(--line-2);padding:6px 11px;border-radius:999px;background:rgba(47,123,255,.10);transition:.25s}
+.chip:hover{border-color:rgba(255,51,85,.6);background:rgba(255,51,85,.12);transform:translateY(-2px)}
+.chip.r{border-color:rgba(255,51,85,.45);background:rgba(255,51,85,.1)}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;padding:13px 20px;border-radius:14px;font-weight:600;font-size:14.5px;transition:transform .25s,box-shadow .25s,background .25s;will-change:transform}
+.btn.primary{color:#fff;background:linear-gradient(120deg,var(--blue) 0%,#1d4fd8 50%,var(--red) 120%);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 14px 34px rgba(47,123,255,.45),0 2px 0 #163fb0}
+.btn.primary:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 18px 40px rgba(255,51,85,.35),0 2px 0 #163fb0}
+.btn.ghost{border:1px solid var(--line-2);background:rgba(47,123,255,.08)}
+.btn.ghost:hover{border-color:var(--sky)}
+
+/* floating hero glass badges */
+.hero-aside{position:relative;height:520px;perspective:1000px;pointer-events:none}
+.float{position:absolute;padding:14px 16px;border-radius:16px;background:rgba(10,30,90,.45);border:1px solid var(--line-2);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  box-shadow:0 24px 50px -16px rgba(0,8,40,.8);animation:bob 6s ease-in-out infinite;transform-style:preserve-3d}
+.float .n{font-family:var(--display);font-weight:700;font-size:32px;line-height:1}
+.float .n sup{font-size:16px;color:var(--red-2)}
+.float .t{font-size:12px;color:var(--ink-2);margin-top:4px;max-width:16ch;line-height:1.3}
+.float.f1{top:6%;left:2%;animation-delay:-1s}
+.float.f2{top:16%;right:0;animation-delay:-3s}
+.float.f3{bottom:14%;left:8%;animation-delay:-2s}
+.float.f4{bottom:4%;right:6%;animation-delay:-4.5s}
+@keyframes bob{0%,100%{transform:translate3d(0,0,40px) rotateX(8deg) rotateY(-10deg)}50%{transform:translate3d(0,-16px,70px) rotateX(-4deg) rotateY(8deg)}}
+
+/* sections */
+section{padding:110px 0;position:relative}
+.sec-head{display:grid;grid-template-columns:420px 1fr;gap:40px;margin-bottom:48px;align-items:end}
+.sec-head h2{font-size:clamp(40px,5vw,64px);line-height:1;font-weight:700;letter-spacing:-.04em}
+.sec-head p{color:var(--ink-2);max-width:60ch}
+@media (max-width:860px){.sec-head{grid-template-columns:1fr;gap:14px}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  box-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 30px 60px -30px rgba(0,6,30,.85)}
+
+/* about + 3D profile card */
+.about{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+@media (max-width:900px){.about{grid-template-columns:1fr}}
+.about .big{font-family:var(--display);font-size:clamp(24px,2.5vw,32px);line-height:1.3;color:var(--ink);font-weight:500;letter-spacing:-.02em}
+.bring{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.bring{grid-template-columns:1fr}}
+.bring div{padding:16px 18px;border-radius:14px;border:1px solid var(--line);background:rgba(47,123,255,.06);font-size:14.5px;color:var(--ink-2)}
+.bring b{display:block;color:var(--ink);font-weight:600;margin-bottom:2px}
+.stage{perspective:1100px;display:grid;place-items:center;padding:20px 0}
+.card3d{--rx:-8deg;--ry:14deg;position:relative;width:min(400px,100%);aspect-ratio:.8;border-radius:28px;transform-style:preserve-3d;
+  transform:rotateX(var(--rx)) rotateY(var(--ry));transition:transform .5s cubic-bezier(.2,.7,.2,1);
+  background:linear-gradient(155deg,#16348f 0%,#0b1f5e 50%,#071640 100%);border:1px solid var(--line-2);
+  box-shadow:0 60px 120px -30px rgba(0,6,30,.95),0 30px 70px -30px rgba(255,51,85,.35),inset 0 1px 0 rgba(255,255,255,.15)}
+.card3d::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(420px 260px at var(--mx,30%) var(--my,10%),rgba(255,255,255,.18),transparent 60%)}
+.card3d::after{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;pointer-events:none;
+  background:linear-gradient(140deg,var(--sky),transparent 35%,transparent 65%,var(--red));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.card3d .layer{position:absolute;transform-style:preserve-3d}
+.card3d .mono{top:28px;left:30px;transform:translateZ(70px);font-family:var(--display);font-weight:700;font-size:78px;line-height:1;letter-spacing:-.05em;text-shadow:0 20px 40px rgba(0,0,0,.5)}
+.card3d .tag{top:38px;right:28px;transform:translateZ(40px);font-family:var(--mono);font-size:11px;color:var(--ink-2);text-align:right;line-height:1.7}
+.card3d .tag b{color:#7dffb0;font-weight:500}
+.card3d .code{top:140px;left:30px;right:30px;transform:translateZ(30px);font-family:var(--mono);font-size:11.5px;line-height:1.8;color:var(--ink-3)}
+.code .k{color:var(--sky)} .code .s{color:var(--red-2)} .code .c{color:#5a6d99}
+.card3d .stats{left:20px;right:20px;bottom:20px;transform:translateZ(90px);display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{padding:14px;border-radius:16px;background:rgba(255,255,255,.07);border:1px solid var(--line-2);backdrop-filter:blur(6px);box-shadow:0 18px 40px rgba(0,6,30,.55)}
+.stat .n{font-family:var(--display);font-weight:700;font-size:34px;line-height:1}
+.stat .n sup{font-size:16px;color:var(--red-2)}
+.stat .t{font-size:12px;color:var(--ink-2);margin-top:6px;line-height:1.3}
+.orb{position:absolute;border-radius:50%;pointer-events:none}
+.orb.a{width:120px;height:120px;right:-36px;top:-34px;transform:translateZ(-60px);background:radial-gradient(circle at 35% 30%,#ffd0d8,var(--red) 45%,#5a0a1c 85%);box-shadow:0 0 60px rgba(255,51,85,.5)}
+.orb.b{width:64px;height:64px;left:-28px;bottom:150px;transform:translateZ(120px);background:radial-gradient(circle at 35% 30%,#e6f2ff,var(--blue) 50%,#0a1f5c 88%);box-shadow:0 0 40px rgba(47,123,255,.6)}
+
+/* tilt + glare */
+[data-tilt]{--rx:0deg;--ry:0deg;position:relative;transform:perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)) translateZ(0);transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .3s,box-shadow .3s;transform-style:preserve-3d;will-change:transform}
+[data-tilt]::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(360px 220px at var(--gx,50%) var(--gy,0%),rgba(140,200,255,.16),transparent 65%)}
+[data-tilt]:hover{border-color:rgba(255,51,85,.45);box-shadow:0 40px 80px -30px rgba(0,6,30,.95),0 0 0 1px rgba(255,51,85,.12),0 0 40px -10px rgba(47,123,255,.45)}
+[data-tilt]:hover::after{opacity:1}
+
+/* frontend feature */
+.fe{display:grid;grid-template-columns:360px 1fr;gap:40px;align-items:center;padding:40px;margin-bottom:16px;overflow:hidden}
+@media (max-width:960px){.fe{grid-template-columns:1fr;padding:28px}}
+.fe h3{font-size:28px;margin:10px 0 8px;letter-spacing:-.03em}
+.fe .intro{color:var(--ink-2);max-width:62ch}
+.fe-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:24px}
+@media (max-width:620px){.fe-grid{grid-template-columns:1fr}}
+.fe-item{padding:16px 18px;border-radius:14px;border:1px solid var(--line);background:rgba(4,11,36,.35);transition:.3s}
+.fe-item:hover{border-color:var(--line-2);background:rgba(47,123,255,.1);transform:translateY(-3px)}
+.fe-item b{display:flex;align-items:center;gap:8px;font-size:14.5px;margin-bottom:4px}
+.fe-item b i{width:8px;height:8px;border-radius:2px;background:linear-gradient(135deg,var(--blue),var(--red));transform:rotate(45deg)}
+.fe-item span{font-size:13.5px;color:var(--ink-2);line-height:1.55}
+
+/* CSS 3D cube */
+.cube-stage{height:320px;display:grid;place-items:center;perspective:900px}
+.cube{--s:170px;width:var(--s);height:var(--s);position:relative;transform-style:preserve-3d;transform:rotateX(-22deg) rotateY(-30deg);cursor:grab;touch-action:none}
+.cube.drag{cursor:grabbing}
+.cube .face{position:absolute;inset:0;display:grid;place-items:center;text-align:center;border-radius:18px;
+  font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-.02em;color:#fff;
+  border:1px solid rgba(160,205,255,.45);backdrop-filter:blur(4px);
+  box-shadow:inset 0 0 40px rgba(90,162,255,.35),0 0 30px rgba(47,123,255,.25)}
+.cube .face small{display:block;font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ice);opacity:.8;margin-top:4px}
+.cube .f1{transform:translateZ(calc(var(--s)/2));background:linear-gradient(150deg,rgba(47,123,255,.75),rgba(10,31,92,.75))}
+.cube .f2{transform:rotateY(90deg) translateZ(calc(var(--s)/2));background:linear-gradient(150deg,rgba(255,51,85,.75),rgba(90,10,40,.75))}
+.cube .f3{transform:rotateY(180deg) translateZ(calc(var(--s)/2));background:linear-gradient(150deg,rgba(29,79,216,.8),rgba(7,22,64,.8))}
+.cube .f4{transform:rotateY(-90deg) translateZ(calc(var(--s)/2));background:linear-gradient(150deg,rgba(90,162,255,.7),rgba(16,42,120,.8))}
+.cube .f5{transform:rotateX(90deg) translateZ(calc(var(--s)/2));background:linear-gradient(150deg,rgba(255,107,129,.7),rgba(47,123,255,.7))}
+.cube .f6{transform:rotateX(-90deg) translateZ(calc(var(--s)/2));background:linear-gradient(150deg,rgba(10,31,92,.9),rgba(255,51,85,.6))}
+.cube-shadow{width:200px;height:40px;border-radius:50%;background:radial-gradient(closest-side,rgba(47,123,255,.45),transparent);margin-top:-30px;filter:blur(6px)}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media (max-width:1000px){.skills{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.skills{grid-template-columns:1fr}}
+.skill{padding:24px}
+.skill .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;margin-bottom:16px;transform:translateZ(36px);
+  background:linear-gradient(150deg,rgba(47,123,255,.55),rgba(255,51,85,.35));border:1px solid rgba(160,205,255,.4);color:#fff;font-family:var(--mono);font-size:13px;font-weight:500;box-shadow:0 10px 24px rgba(47,123,255,.3)}
+.skill h3{font-size:17px;margin-bottom:10px;transform:translateZ(22px)}
+.skill p{font-size:14px;color:var(--ink-2);line-height:1.65}
+
+/* sphere + how */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+@media (max-width:900px){.duo{grid-template-columns:1fr}}
+.sphere-wrap{position:relative;min-height:520px;overflow:hidden;padding:24px}
+.sphere-wrap .eyebrow{position:absolute;top:24px;left:24px;z-index:2}
+.sphere-wrap .hint{position:absolute;bottom:18px;left:0;right:0;text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-3);z-index:2}
+.sphere{position:absolute;inset:0;perspective:800px;cursor:grab;touch-action:none}
+.sphere.drag{cursor:grabbing}
+.sphere span{position:absolute;left:50%;top:50%;white-space:nowrap;font-family:var(--mono);font-size:12px;padding:4px 10px;border-radius:999px;
+  border:1px solid var(--line-2);background:rgba(10,30,90,.6);color:var(--ice);will-change:transform,opacity;user-select:none}
+.sphere span.r{border-color:rgba(255,51,85,.55);background:rgba(120,15,45,.45);color:#ffe1e7}
+.sphere::before{content:"";position:absolute;left:50%;top:50%;width:300px;height:300px;margin:-150px 0 0 -150px;border-radius:50%;
+  background:radial-gradient(circle at 40% 35%,rgba(90,162,255,.25),rgba(255,51,85,.08) 55%,transparent 70%)}
+.how{padding:30px;display:grid;gap:4px}
+.how h3{font-size:22px;margin:10px 0 8px}
+.how>div:not(.eyebrow){padding:14px 0 14px 18px;border-left:2px solid transparent;border-image:linear-gradient(var(--blue),var(--red)) 1;margin-left:2px}
+.how b{display:block;font-size:15px;margin-bottom:2px}
+.how span{font-size:14px;color:var(--ink-2)}
+
+/* projects */
+.projects{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.proj{padding:28px;display:flex;flex-direction:column;gap:12px;grid-column:span 2;min-height:100%}
+.proj.wide{grid-column:span 3}
+@media (max-width:1000px){.proj,.proj.wide{grid-column:span 3}}
+@media (max-width:660px){.proj,.proj.wide{grid-column:span 6}}
+.proj .top{display:flex;justify-content:space-between;align-items:center;gap:10px;transform:translateZ(24px)}
+.badge{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2);white-space:nowrap}
+.badge.live{color:#7dffb0;border-color:rgba(125,255,176,.4)}
+.badge.live::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#7dffb0;margin-right:6px;box-shadow:0 0 10px #7dffb0;vertical-align:1px;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.35}}
+.badge.ui{color:#ffd0d8;border-color:rgba(255,51,85,.5);background:rgba(255,51,85,.1)}
+.proj .idx{font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+.proj h3{font-size:21px;line-height:1.2;transform:translateZ(32px)}
+.proj p{font-size:14.5px;color:var(--ink-2)}
+.proj ul{list-style:none;font-size:14px;color:var(--ink-2);display:grid;gap:6px}
+.proj li{padding-left:16px;position:relative}
+.proj li::before{content:"";position:absolute;left:0;top:.65em;width:7px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--blue),var(--red))}
+.proj code{font-family:var(--mono);font-size:12.5px;color:var(--sky)}
+.stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:8px}
+.stack span{font-family:var(--mono);font-size:11px;color:var(--sky);background:rgba(47,123,255,.12);border:1px solid rgba(90,162,255,.25);padding:3px 8px;border-radius:6px}
+.stack span.r{color:#ffd0d8;background:rgba(255,51,85,.1);border-color:rgba(255,51,85,.3)}
+
+/* 3D ring carousel */
+.ring-panel{margin-top:16px;padding:28px 28px 10px;overflow:hidden}
+.ring-panel .head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.ring-panel .head span{font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+.ring-stage{height:340px;perspective:1100px;position:relative;cursor:grab;touch-action:pan-y}
+.ring-stage.drag{cursor:grabbing}
+.ring{position:absolute;left:50%;top:50%;transform-style:preserve-3d}
+.ring .it{position:absolute;width:230px;left:-115px;top:-70px;min-height:140px;padding:18px;border-radius:16px;
+  background:linear-gradient(160deg,rgba(29,79,216,.55),rgba(7,22,64,.85));border:1px solid var(--line-2);
+  box-shadow:0 20px 40px -10px rgba(0,6,30,.8);font-size:13.5px;color:var(--ink-2);user-select:none}
+.ring .it b{display:block;color:var(--ink);font-family:var(--display);font-size:16px;margin-bottom:6px;line-height:1.25}
+.ring .it:nth-child(even){background:linear-gradient(160deg,rgba(255,51,85,.35),rgba(7,22,64,.9))}
+.ring-floor{position:absolute;left:50%;bottom:6px;width:70%;height:60px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(47,123,255,.35),transparent);filter:blur(10px)}
+
+/* timeline */
+.tl{position:relative;display:grid;gap:16px;padding-left:34px}
+.tl::before{content:"";position:absolute;left:9px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--sky),var(--blue) 40%,var(--red) 75%,var(--navy-2));border-radius:2px;box-shadow:0 0 16px rgba(47,123,255,.6)}
+.job{display:grid;grid-template-columns:200px 1fr;gap:32px;padding:30px;position:relative}
+.job::before{content:"";position:absolute;left:-31px;top:36px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--blue);box-shadow:0 0 0 4px rgba(47,123,255,.18),0 0 16px var(--blue)}
+.job:nth-child(2)::before,.job:nth-child(4)::before{border-color:var(--red);box-shadow:0 0 0 4px rgba(255,51,85,.18),0 0 16px var(--red)}
+@media (max-width:760px){.job{grid-template-columns:1fr;gap:10px}}
+.job .when{font-family:var(--mono);font-size:13px;color:var(--sky)}
+.job .org{font-size:13.5px;color:var(--ink-3);margin-top:6px}
+.job h3{font-size:22px;margin-bottom:10px}
+.job ul{list-style:none;display:grid;gap:8px;color:var(--ink-2);font-size:15px}
+.job li{padding-left:18px;position:relative}
+.job li::before{content:"";position:absolute;left:0;top:.7em;width:8px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--blue),var(--red))}
+.job.compact h3{font-size:18px;margin-bottom:6px}
+
+/* edu */
+.edu{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
+@media (max-width:860px){.edu{grid-template-columns:1fr}}
+.edu .panel{padding:28px}
+.edu h3{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);font-weight:500;margin-bottom:10px}
+.edu .row{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid var(--line)}
+.edu .row b{font-weight:600;display:block}
+.edu .row span{color:var(--ink-2);font-size:14px}
+.edu .row i{font-style:normal;font-family:var(--mono);font-size:12.5px;color:var(--red-2);white-space:nowrap}
+
+/* contact + gyroscope */
+.contact{padding:80px 64px;text-align:center;overflow:hidden;position:relative;isolation:isolate;
+  background:linear-gradient(160deg,rgba(29,79,216,.45),rgba(7,22,64,.7) 55%,rgba(255,51,85,.25))}
+.gyro{position:absolute;left:50%;top:50%;width:520px;height:520px;margin:-260px 0 0 -260px;perspective:900px;z-index:-1;opacity:.55}
+.gyro i{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(90,162,255,.55);transform-style:preserve-3d;box-shadow:0 0 30px rgba(47,123,255,.25),inset 0 0 30px rgba(47,123,255,.15)}
+.gyro i:nth-child(1){animation:g1 14s linear infinite}
+.gyro i:nth-child(2){inset:50px;border-color:rgba(255,51,85,.6);box-shadow:0 0 30px rgba(255,51,85,.3);animation:g2 10s linear infinite}
+.gyro i:nth-child(3){inset:100px;border-color:rgba(140,200,255,.5);animation:g3 8s linear infinite}
+.gyro i:nth-child(4){inset:220px;border:none;background:radial-gradient(circle at 35% 30%,#fff,var(--blue) 45%,#0a1f5c 85%);box-shadow:0 0 60px rgba(47,123,255,.7);animation:none}
+@keyframes g1{from{transform:rotateX(70deg) rotateZ(0)}to{transform:rotateX(70deg) rotateZ(360deg)}}
+@keyframes g2{from{transform:rotateY(65deg) rotateX(20deg) rotateZ(0)}to{transform:rotateY(65deg) rotateX(20deg) rotateZ(-360deg)}}
+@keyframes g3{from{transform:rotateX(-40deg) rotateY(30deg) rotateZ(0)}to{transform:rotateX(-40deg) rotateY(30deg) rotateZ(360deg)}}
+.contact h2{font-size:clamp(44px,6vw,84px);line-height:1;margin:14px 0 18px;letter-spacing:-.045em;font-weight:700}
+.contact p{color:var(--ink-2);max-width:52ch;margin:0 auto}
+.contact .actions{justify-content:center}
+@media (max-width:600px){.contact{padding:48px 22px}.gyro{transform:scale(.7)}}
+footer{padding:40px 0 60px;color:var(--ink-3);font-size:13px;text-align:center}
+footer b{color:var(--ink-2);font-weight:500}
+
+/* reveal */
+.rv{opacity:0;translate:0 30px;transition:opacity .9s ease,translate .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;translate:0 0}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .rv{opacity:1;translate:none}
+}
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+<div class="spot" aria-hidden="true"></div>
+
+<nav aria-label="Primary">
+  <span class="mark gt">VM</span>
+  <a class="l" href="#about">About</a>
+  <a class="l" href="#frontend">Frontend</a>
+  <a class="l" href="#skills">Toolkit</a>
+  <a class="l" href="#work">Work</a>
+  <a class="l" href="#experience">Experience</a>
+  <a class="cta" href="Vernon-Mosterd-CV.pdf" download>Download CV</a>
+</nav>
+
+<header class="hero">
+  <canvas id="gl" aria-hidden="true"></canvas>
+  <div class="floor" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Kariega, South Africa · Open to remote &amp; hybrid</div>
+      <h1>Vernon<br><span class="gt">Mosterd</span></h1>
+      <p class="role">Full-Stack &amp; Frontend Engineer · AI-Assisted Delivery <span>with Claude Code, in regulated industries</span></p>
+      <p class="typed" aria-hidden="true"></p>
+      <p class="lede">I design, build and run production web systems end to end, with a strong eye for the interface: accessible, responsive React and Next.js front ends in TypeScript and Tailwind, backed by Python and Node services, PostgreSQL, GitHub Actions and Microsoft Entra ID. Twenty-eight years in public-sector health IT taught me that usability, security and data quality are never optional.</p>
+      <div class="chips">
+        <span class="chip">React</span><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">Tailwind</span><span class="chip r">WCAG 2.1 AA</span><span class="chip">PostgreSQL</span><span class="chip">GitHub Actions</span><span class="chip r">Claude Code</span>
+      </div>
+      <div class="actions">
+        <a class="btn primary" data-magnet href="#work">See the work →</a>
+        <a class="btn ghost" data-magnet href="mailto:vernon.mosterd@gmail.com">vernon.mosterd@gmail.com</a>
+      </div>
+    </div>
+    <div class="hero-aside" aria-hidden="true">
+      <div class="float f1"><div class="n">28<sup>+</sup></div><div class="t">years in health IT</div></div>
+      <div class="float f2"><div class="n">15<sup>+</sup></div><div class="t">systems built with Claude Code</div></div>
+      <div class="float f3"><div class="n">AA</div><div class="t">WCAG 2.1 accessible UI</div></div>
+      <div class="float f4"><div class="n">500<sup>+</sup></div><div class="t">commits on one live platform</div></div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head rv"><h2>Profile</h2><p>Where interface design, data and engineering meet.</p></div>
+    <div class="about">
+      <div class="rv">
+        <p class="big">I write the spec, design the interface, steer the AI, review every diff and <span class="gt">own the result in production</span>. Claude Code is my core engineering tool: it lets one experienced builder deliver what used to take a team, without lowering the bar on UX, accessibility, tests, migrations or access control.</p>
+        <div class="bring">
+          <div><b>Production delivery</b>Greenfield builds and steady extension of live systems with real users.</div>
+          <div><b>Interfaces people can use</b>Mobile-first, accessible, multilingual UI for citizens and staff.</div>
+          <div><b>Regulated data</b>POPIA, PAIA, audit findings and clinical governance are daily work.</div>
+          <div><b>Clear async writing</b>Specs, decision logs, runbooks and plain-language executive updates.</div>
+        </div>
+      </div>
+      <div class="stage rv" aria-hidden="true">
+        <div class="card3d" id="card">
+          <div class="orb a layer"></div>
+          <div class="orb b layer"></div>
+          <div class="layer mono gt">VM</div>
+          <div class="layer tag">github.com/BoetaV<br><b>● shipping</b></div>
+          <div class="layer code">
+            <span class="c">// app/(staff)/cases/page.tsx</span><br>
+            <span class="k">ui</span>: <span class="s">React · Tailwind · shadcn/ui</span><br>
+            <span class="k">a11y</span>: <span class="s">WCAG 2.1 AA · 4 languages</span><br>
+            <span class="k">agent</span>: <span class="s">claude-code</span> + MCP
+          </div>
+          <div class="layer stats">
+            <div class="stat"><div class="n">28<sup>+</sup></div><div class="t">years in health IT &amp; information systems</div></div>
+            <div class="stat"><div class="n">15<sup>+</sup></div><div class="t">systems built with Claude Code</div></div>
+            <div class="stat"><div class="n">500<sup>+</sup></div><div class="t">commits on one live platform</div></div>
+            <div class="stat"><div class="n">5</div><div class="t">GitHub Actions pipelines built</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="frontend">
+  <div class="wrap">
+    <div class="sec-head rv"><h2>Frontend <span class="gt">&amp; UI</span></h2><p>Interfaces for citizens on low-end phones and staff on busy shifts: fast, accessible, clear, and tested end to end.</p></div>
+    <div class="panel fe rv">
+      <div>
+        <div class="cube-stage" aria-hidden="true">
+          <div class="cube" id="cube">
+            <div class="face f1"><div>React<small>components</small></div></div>
+            <div class="face f2"><div>A11y<small>WCAG 2.1 AA</small></div></div>
+            <div class="face f3"><div>Next.js<small>App Router</small></div></div>
+            <div class="face f4"><div>Tailwind<small>design systems</small></div></div>
+            <div class="face f5"><div>TS<small>type-safe UI</small></div></div>
+            <div class="face f6"><div>3D<small>motion</small></div></div>
+          </div>
+        </div>
+        <div class="cube-shadow" aria-hidden="true" style="margin-inline:auto"></div>
+      </div>
+      <div>
+        <div class="eyebrow">UI engineering</div>
+        <h3>From wireframe to accessible, tested interface</h3>
+        <p class="intro">I build the screens people actually touch: applicant portals, staff consoles, dashboards and mobile-first citizen apps. Every screen is responsive, keyboard-friendly and typed end to end.</p>
+        <div class="fe-grid">
+          <div class="fe-item"><b><i></i>Frameworks</b><span>React, Next.js (App Router, server components), Vite, TypeScript strict mode.</span></div>
+          <div class="fe-item"><b><i></i>Styling &amp; design systems</b><span>Tailwind CSS, shadcn/ui and Radix primitives, design tokens, responsive grids, dark themes.</span></div>
+          <div class="fe-item"><b><i></i>Accessibility &amp; i18n</b><span>WCAG 2.1 AA, semantic HTML, focus management, reduced-motion support, four-language UI.</span></div>
+          <div class="fe-item"><b><i></i>State, forms &amp; data</b><span>TanStack Query, react-hook-form with Zod validation, optimistic updates, offline-first queue.</span></div>
+          <div class="fe-item"><b><i></i>Dashboards &amp; data viz</b><span>Recharts, KPI tiles, server-side paginated tables, filters and PDF reports.</span></div>
+          <div class="fe-item"><b><i></i>Motion &amp; 3D</b><span>CSS 3D transforms, scroll-driven reveals, micro-interactions, Three.js / WebGL shaders (this site).</span></div>
+          <div class="fe-item"><b><i></i>UI testing</b><span>Playwright end-to-end flows, Vitest component and unit tests, cross-device checks.</span></div>
+          <div class="fe-item"><b><i></i>Performance</b><span>Mobile-first on low bandwidth, lazy loading, code splitting, Lighthouse-guided tuning.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head rv"><h2>Toolkit</h2><p>The full stack I use to ship, and the habits that keep it maintainable.</p></div>
+    <div class="skills">
+      <div class="panel skill rv" data-tilt><div class="ic">UI</div><h3>Front end</h3><p>TypeScript, React, Next.js (App Router), Vite, Tailwind CSS, shadcn/ui, TanStack Query, Zod, react-hook-form, Recharts.</p></div>
+      <div class="panel skill rv" data-tilt><div class="ic">DB</div><h3>Back end &amp; data</h3><p>PostgreSQL, SQL, PostGIS, MySQL, Redis. Python (FastAPI, Pydantic, SQLAlchemy, Alembic) and Node.js. REST API design.</p></div>
+      <div class="panel skill rv" data-tilt><div class="ic">CI</div><h3>DevOps &amp; delivery</h3><p>GitHub Actions CI/CD (tests, lint, migration gates, dependency audit, Pages deploys), Docker Compose, Nginx, Caddy, Railway, pnpm + Turborepo.</p></div>
+      <div class="panel skill rv" data-tilt><div class="ic">AI</div><h3>AI engineering</h3><p>Claude Code (CLAUDE.md conventions, skills, subagents, MCP servers), Anthropic API, n8n automations, prompt and spec design.</p></div>
+      <div class="panel skill rv" data-tilt><div class="ic">ID</div><h3>Identity &amp; security</h3><p>Microsoft Entra ID (MSAL), JWT, role-based access with scope checks, least privilege, audit trails, segregation of duties.</p></div>
+      <div class="panel skill rv" data-tilt><div class="ic">QA</div><h3>Testing &amp; quality</h3><p>pytest, Playwright end-to-end, Vitest, integration tests against real Postgres, functional testing and UAT across sites.</p></div>
+      <div class="panel skill rv" data-tilt><div class="ic">HI</div><h3>Health information</h3><p>DHIS2/WebDHIS, TIER.Net, HMS2, HPRS, EVDS, Master Facility List, National Indicator Data Set, data quality frameworks.</p></div>
+      <div class="panel skill rv" data-tilt><div class="ic">LD</div><h3>Leadership</h3><p>Strategy and annual performance planning, governance committees, vendor and stakeholder management, coaching and training.</p></div>
+    </div>
+
+    <div class="duo">
+      <div class="panel sphere-wrap rv">
+        <div class="eyebrow">Tech sphere</div>
+        <div class="sphere" id="sphere" aria-label="Technologies I use"></div>
+        <div class="hint">drag to spin</div>
+      </div>
+      <div class="panel how rv">
+        <div class="eyebrow">How I work</div>
+        <h3>Disciplined, AI-assisted delivery</h3>
+        <div><b>Spec first</b><span>Requirements traced to BRS IDs, phased delivery with a review gate after each phase.</span></div>
+        <div><b>Design in the browser</b><span>Clickable prototypes early, so users react to real screens, not documents.</span></div>
+        <div><b>Repo rules</b><span>Every repository has a CLAUDE.md: stack, source of truth, what to ask before changing.</span></div>
+        <div><b>Gates in CI</b><span>Tests, type checks, migration drift and dependency audits run on every push.</span></div>
+        <div><b>Safe by default</b><span>Synthetic data only in code and tests. Nothing deploys or sends without approval.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head rv"><h2>Selected work</h2><p>Systems I designed and built with Claude Code for the Eastern Cape Department of Health and private clients, from live public platforms to working prototypes.</p></div>
+    <div class="projects">
+
+      <article class="panel proj wide rv" data-tilt>
+        <div class="top"><span class="idx">01</span><span class="badge live">Live</span></div>
+        <h3>Nursing College Admissions Platform</h3>
+        <p>Public online application and selection system for the 2027 intake of the provincial college of nursing.</p>
+        <ul>
+          <li>Responsive applicant portal with multi-step forms and uploads, plus a staff dashboard for review and selection.</li>
+          <li>Tuned for load: server-side pagination, counts in the database, pooled connections during uploads.</li>
+          <li>Automated emails from application received to admission offer; 500+ commits over four months live.</li>
+        </ul>
+        <div class="stack"><span class="r">Next.js</span><span class="r">TypeScript</span><span class="r">Tailwind</span><span>FastAPI</span><span>PostgreSQL</span><span>Docker</span></div>
+      </article>
+
+      <article class="panel proj wide rv" data-tilt>
+        <div class="top"><span class="idx">02</span><span class="badge ui">Mobile-first UI</span></div>
+        <h3>Patient-Voice Platform</h3>
+        <p>Mobile-first citizen app for complaints and compliments, plus a staff console to resolve every case on time.</p>
+        <ul>
+          <li>Accessible to WCAG 2.1 AA, in four languages, with an offline queue for patchy rural connections.</li>
+          <li>Staff console with Microsoft Entra ID sign-in and least-privilege roles.</li>
+          <li>TypeScript monorepo with a shared API; CI with Postgres integration tests and dependency audit.</li>
+        </ul>
+        <div class="stack"><span class="r">React</span><span class="r">Vite</span><span>pnpm</span><span>Turborepo</span><span>MSAL</span><span>Postgres</span></div>
+      </article>
+
+      <article class="panel proj rv" data-tilt>
+        <div class="top"><span class="idx">03</span><span class="badge">Inter-departmental</span></div>
+        <h3>Mental Health Platform · Forensic Module</h3>
+        <p>Shared Justice and Health workflow: court referral to hospital admission, assessment and discharge.</p>
+        <ul>
+          <li>Role-aware UI: each party sees only its own modules and data.</li>
+          <li>CI runs tests and an <code>alembic check</code> drift gate.</li>
+        </ul>
+        <div class="stack"><span class="r">Next.js</span><span class="r">TypeScript</span><span>FastAPI</span><span>Alembic</span><span>GitHub Actions</span></div>
+      </article>
+
+      <article class="panel proj rv" data-tilt>
+        <div class="top"><span class="idx">04</span><span class="badge">In build</span></div>
+        <h3>Perinatal Mortality System</h3>
+        <p>Cloud, multi-user rebuild of a national desktop tool for maternal and perinatal death audits across hospitals.</p>
+        <ul>
+          <li>Long clinical audit forms rebuilt as guided, validated web flows.</li>
+          <li>Playwright end-to-end tests in a multi-job CI pipeline.</li>
+        </ul>
+        <div class="stack"><span class="r">Next.js</span><span class="r">TypeScript</span><span>Playwright</span><span>PostgreSQL</span></div>
+      </article>
+
+      <article class="panel proj rv" data-tilt>
+        <div class="top"><span class="idx">05</span><span class="badge">Finance</span></div>
+        <h3>Payment Authorisation Governance</h3>
+        <p>Tracks weekly salary and creditor payment authorisations per institution, daily captures and cycle closes.</p>
+        <ul>
+          <li>Recharts dashboards and PDF activity reports.</li>
+          <li>JWT auth with role and scope checks.</li>
+        </ul>
+        <div class="stack"><span class="r">Next.js</span><span class="r">Recharts</span><span>FastAPI</span><span>psycopg 3</span><span>Railway</span></div>
+      </article>
+
+      <article class="panel proj wide rv" data-tilt>
+        <div class="top"><span class="idx">06</span><span class="badge">Prototype</span></div>
+        <h3>Ambulance Call-Taking &amp; Dispatch</h3>
+        <p>Takes emergency requests from phone, WhatsApp and other channels, finds the nearest available ambulance and tracks it to the patient.</p>
+        <div class="stack"><span>FastAPI</span><span>PostGIS</span><span>Alembic</span><span>Node.js bridge</span><span>pytest</span></div>
+      </article>
+
+      <article class="panel proj wide rv" data-tilt>
+        <div class="top"><span class="idx">07</span><span class="badge">AI automation</span></div>
+        <h3>Claude-Powered Automation Suite</h3>
+        <p>Ten n8n workflows on the Anthropic API for small businesses: lead qualifying, AI quotes, after-hours assistant, invoice chasing and morning briefings, with consent and POPIA rules built in.</p>
+        <div class="stack"><span class="r">Anthropic API</span><span>n8n</span><span>Webhooks</span><span>Twilio</span><span>Google Sheets</span></div>
+      </article>
+    </div>
+
+    <div class="panel ring-panel rv">
+      <div class="head"><div class="eyebrow">Also built</div><span>drag or hover to pause</span></div>
+      <div class="ring-stage" id="ringStage">
+        <div class="ring" id="ring">
+          <div class="it"><b>Digital anaesthetic record</b>Feeds the monthly DHIS theatre report.</div>
+          <div class="it"><b>Digital facility register</b>Replaces paper registers at clinics.</div>
+          <div class="it"><b>Nursing attendance register</b>Deployed by GitHub Actions to GitHub Pages.</div>
+          <div class="it"><b>Stock ledger</b>Stock movements with valuation reports.</div>
+          <div class="it"><b>Rugby match-tagging app</b>Live tagging UI; Vitest, Playwright, Redis.</div>
+          <div class="it"><b>Law-firm website</b>Marketing site with a Claude assistant.</div>
+          <div class="it"><b>Personal planner</b>Task and calendar planner UI.</div>
+          <div class="it"><b>eHealth lead workbench</b>Portfolio tracking for digital-health projects.</div>
+          <div class="it"><b>This 3D CV</b>Three.js shader orb, CSS 3D cube, sphere and ring.</div>
+        </div>
+        <div class="ring-floor" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head rv"><h2>Experience</h2><p>Eastern Cape Department of Health, from the server room to the district boardroom.</p></div>
+    <div class="tl">
+      <div class="panel job rv">
+        <div><div class="when">2025 — Present</div><div class="org">Eastern Cape Dept of Health (seconded)</div></div>
+        <div>
+          <h3>eHealth Project Lead</h3>
+          <ul>
+            <li>Lead the design and delivery of provincial digital-health systems, from business case and requirements to go-live and support.</li>
+            <li>Build production applications hands-on with Claude Code: React/Next.js TypeScript front ends, Python and Node services, PostgreSQL, CI/CD in GitHub Actions.</li>
+            <li>Design user-facing screens with clinicians, applicants and admin staff, iterating on clickable prototypes before build.</li>
+            <li>Assess every new need as build, buy, integrate or extend across the application portfolio, saving time and budget.</li>
+            <li>Run functional, integration and user-acceptance testing across facilities with very different levels of digital maturity.</li>
+            <li>Member of the provincial HMS2 implementation team, focused on data management and reporting integrity.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel job rv">
+        <div><div class="when">2004 — Present</div><div class="org">Sarah Baartman District · acting periods</div></div>
+        <div>
+          <h3>Acting District Manager</h3>
+          <ul>
+            <li>Full delegated authority over HR, finance, supply chain and clinical operations for district hospitals and clinics.</li>
+            <li>Led the district COVID-19 response (2020) and vaccine rollout (2021); Makana sub-district was ranked the top-performing vaccination sub-district nationally.</li>
+            <li>Accountable for statutory reporting: Auditor-General findings, internal control, parliamentary questions and PAIA requests.</li>
+            <li>Represented the province at national level on the Master Facility List and health system architecture.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel job rv">
+        <div><div class="when">2006 — Present</div><div class="org">Eastern Cape Dept of Health</div></div>
+        <div>
+          <h3>Deputy Director: District Health Information Systems</h3>
+          <ul>
+            <li>Own the quality, flow and use of health data for a whole district: facility capture to provincial submission.</li>
+            <li>Rolled out and supported national systems (DHIS2/WebDHIS, TIER.Net, HPRS, EVDS, SVS) and trained staff at every level.</li>
+            <li>Built reports, dashboards and data-quality checks that management uses to make decisions.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel job compact rv">
+        <div><div class="when">2008 — 2009</div><div class="org">Health Information Systems Program</div></div>
+        <div><h3>HMIS / DHIS Facilitator (National)</h3>
+          <ul><li>Managed the national PHC database, data validation and monthly submissions from all provinces; managed changes to the National Indicator Data Set.</li></ul>
+        </div>
+      </div>
+
+      <div class="panel job compact rv">
+        <div><div class="when">1989 — 2006</div><div class="org">ECDoH · Transnet</div></div>
+        <div><h3>Earlier career</h3>
+          <ul>
+            <li>Assistant Director: Information Management (acting), 2003–2006.</li>
+            <li>Computer Operator / IT Technician, 1998–2006: mainframe, servers, WAN, backups, user support.</li>
+            <li>Assistant Manager, Transnet, 1989–1997.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head rv"><h2>Education</h2><p>Formal study, plus continuous self-directed learning in software engineering, UI and AI.</p></div>
+    <div class="edu">
+      <div class="panel rv">
+        <h3>Qualifications</h3>
+        <div class="row"><div><b>BA Health Sciences &amp; Social Services</b><span>University of South Africa · Major: Psychology</span></div><i>2018</i></div>
+        <div class="row"><div><b>Business Management Certificate</b><span>Rand Afrikaans University (now University of Johannesburg)</span></div><i>1993</i></div>
+        <div class="row"><div><b>Accelerated Management Development</b><span>Transnet Management School</span></div><i>1993</i></div>
+      </div>
+      <div class="panel rv">
+        <h3>Certificates</h3>
+        <div class="row"><div><b>Risk Management</b><span>FM Training for Management</span></div><i>2014</i></div>
+        <div class="row"><div><b>PEPFAR HMIS</b><span>Health information systems</span></div><i>2010</i></div>
+        <div class="row"><div><b>Monitoring &amp; Evaluation</b><span>National DoH / Jhpiego</span></div><i>2005</i></div>
+        <div class="row"><div><b>Languages</b><span>English, Afrikaans, isiXhosa</span></div><i></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="panel contact rv">
+      <div class="gyro" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="eyebrow">Let's talk</div>
+      <h2>Ready to build<br><span class="gt">with your team.</span></h2>
+      <p>Available for remote or hybrid roles, comfortable working async with teams in Europe (SAST is UTC+2, one hour from CET).</p>
+      <div class="actions">
+        <a class="btn primary" data-magnet href="mailto:vernon.mosterd@gmail.com">Email me</a>
+        <a class="btn ghost" data-magnet href="https://github.com/BoetaV" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn ghost" data-magnet href="Vernon-Mosterd-CV.pdf" download>Download PDF</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>© 2026 Vernon Mosterd · Designed and built with <b>Claude Code</b> · Three.js, CSS 3D and zero frameworks</footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  // reveal on scroll
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.12});
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  // scroll progress + active nav
+  const bar = document.querySelector('.progress');
+  const links = [...document.querySelectorAll('nav a.l')];
+  const secs = links.map(a => document.querySelector(a.getAttribute('href')));
+  const onScroll = () => {
+    const h = document.documentElement;
+    bar.style.setProperty('--p', h.scrollTop / (h.scrollHeight - h.clientHeight || 1));
+    let cur = -1; secs.forEach((s, i) => { if (s && s.getBoundingClientRect().top < innerHeight * .4) cur = i; });
+    links.forEach((a, i) => a.classList.toggle('on', i === cur));
+  };
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // typed line
+  const typed = document.querySelector('.typed');
+  const lines = ['> building accessible React + Next.js interfaces','> shipping TypeScript, PostgreSQL and CI/CD','> spec → Claude Code → review → production'];
+  if (reduce) typed.textContent = lines[0];
+  else {
+    let li = 0, ci = 0, del = false;
+    (function tick(){
+      const s = lines[li];
+      typed.textContent = s.slice(0, ci);
+      if (!del && ci < s.length) ci++;
+      else if (!del) { del = true; return setTimeout(tick, 1800); }
+      else if (ci > 0) ci--;
+      else { del = false; li = (li + 1) % lines.length; }
+      setTimeout(tick, del ? 22 : 45);
+    })();
+  }
+
+  // ---- tech sphere (3D tag cloud) ----
+  const tags = ['React','Next.js','TypeScript','Tailwind','shadcn/ui','Vite','TanStack Query','Zod','Recharts','Three.js','CSS 3D','WCAG 2.1 AA','i18n','Playwright','Vitest','PostgreSQL','PostGIS','FastAPI','SQLAlchemy','Alembic','Node.js','Redis','Docker','GitHub Actions','Nginx','Railway','Turborepo','Entra ID','JWT','Claude Code','MCP','Anthropic API','n8n','pytest','DHIS2'];
+  const red = new Set(['React','Next.js','TypeScript','Tailwind','WCAG 2.1 AA','Claude Code','Three.js']);
+  const sphere = document.getElementById('sphere');
+  const nodes = tags.map((t, i) => {
+    const el = document.createElement('span'); el.textContent = t; if (red.has(t)) el.className = 'r';
+    sphere.appendChild(el);
+    const phi = Math.acos(1 - 2 * (i + .5) / tags.length), th = Math.PI * (1 + Math.sqrt(5)) * i;
+    return {el, x:Math.sin(phi)*Math.cos(th), y:Math.cos(phi), z:Math.sin(phi)*Math.sin(th)};
+  });
+  let ax = 0, ay = 0, vx = .0035, vy = .006, sDrag = null;
+  const RX = () => sphere.clientWidth * .36, RY = () => sphere.clientHeight * .36;
+  function drawSphere(){
+    const rx = RX(), ry = RY(), cx = Math.cos(ax), sx = Math.sin(ax), cy = Math.cos(ay), sy = Math.sin(ay);
+    nodes.forEach(n => {
+      let x = n.x * cy + n.z * sy, z = -n.x * sy + n.z * cy;
+      let y = n.y * cx - z * sx; z = n.y * sx + z * cx;
+      const k = (z + 1.6) / 2.6;
+      n.el.style.transform = `translate(-50%,-50%) translate3d(${x*rx}px,${y*ry}px,${z*ry*.6}px) scale(${.75 + k*.3})`;
+      n.el.style.opacity = (.18 + k * .82).toFixed(2);
+      n.el.style.zIndex = Math.round(k * 100);
+    });
+  }
+  sphere.addEventListener('pointerdown', e => { sDrag = {x:e.clientX, y:e.clientY}; sphere.classList.add('drag'); sphere.setPointerCapture(e.pointerId); });
+  sphere.addEventListener('pointermove', e => { if (!sDrag) return; vy = (e.clientX - sDrag.x) * .0009; vx = -(e.clientY - sDrag.y) * .0009; sDrag = {x:e.clientX, y:e.clientY}; });
+  const sUp = () => { sDrag = null; sphere.classList.remove('drag'); };
+  sphere.addEventListener('pointerup', sUp); sphere.addEventListener('pointercancel', sUp);
+
+  // ---- 3D ring carousel ----
+  const ring = document.getElementById('ring'), stage = document.getElementById('ringStage');
+  const items = [...ring.children];
+  let rot = 0, rv = reduce ? 0 : .12, rDrag = null, hover = false;
+  function ringRadius(){ return Math.max(240, Math.min(stage.clientWidth * .3, 360)); }
+  function drawRing(){
+    const rr = ringRadius(), step = 360 / items.length;
+    ring.style.transform = `translateZ(${-rr * .55}px) rotateX(-10deg) rotateY(${rot}deg)`;
+    items.forEach((it, i) => {
+      const a = i * step;
+      it.style.transform = `rotateY(${a}deg) translateZ(${rr}px)`;
+      const rel = ((a + rot) % 360 + 360) % 360, f = Math.cos(rel * Math.PI / 180);
+      it.style.opacity = (.15 + .85 * Math.pow((f + 1) / 2, 1.5)).toFixed(2);
+      it.style.filter = f < 0 ? `blur(${(-f * 2).toFixed(1)}px)` : '';
+      it.style.pointerEvents = f > .5 ? '' : 'none';
+    });
+  }
+  stage.addEventListener('pointerenter', () => hover = true);
+  stage.addEventListener('pointerleave', () => { hover = false; rDrag = null; stage.classList.remove('drag'); });
+  stage.addEventListener('pointerdown', e => { rDrag = e.clientX; stage.classList.add('drag'); });
+  stage.addEventListener('pointermove', e => { if (rDrag === null) return; rot += (e.clientX - rDrag) * .25; rDrag = e.clientX; });
+  addEventListener('pointerup', () => { rDrag = null; stage.classList.remove('drag'); });
+
+  // ---- cube drag ----
+  const cube = document.getElementById('cube');
+  let cDrag = null, cx0 = -22, cy0 = -30;
+  const drawCube = () => cube.style.transform = `rotateX(${cx0}deg) rotateY(${cy0}deg)`;
+  cube.addEventListener('pointerdown', e => { cube.classList.add('drag'); cDrag = {x:e.clientX, y:e.clientY}; cube.setPointerCapture(e.pointerId); });
+  cube.addEventListener('pointermove', e => {
+    if (!cDrag) return; cy0 += (e.clientX - cDrag.x) * .5; cx0 -= (e.clientY - cDrag.y) * .5; cDrag = {x:e.clientX, y:e.clientY}; drawCube();
+  });
+  const cUp = () => { cDrag = null; cube.classList.remove('drag'); };
+  cube.addEventListener('pointerup', cUp); cube.addEventListener('pointercancel', cUp);
+
+  // animation loop (only runs while visible)
+  const vis = new Set();
+  const vio = new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? vis.add(e.target) : vis.delete(e.target)));
+  vio.observe(sphere); vio.observe(stage); vio.observe(cube);
+  drawSphere(); drawRing();
+  (function loop(){
+    if (!reduce) {
+      if (vis.has(sphere)) { ax += vx; ay += vy; if (!sDrag) { vx += (.0035 - vx) * .02; vy += (.006 - vy) * .02; } drawSphere(); }
+      if (vis.has(stage)) { if (!hover && rDrag === null) rot -= rv; drawRing(); }
+      if (vis.has(cube) && !cDrag) { cy0 += .35; cx0 += (-22 - cx0) * .02; drawCube(); }
+    }
+    requestAnimationFrame(loop);
+  })();
+  addEventListener('resize', () => { drawSphere(); drawRing(); });
+
+  if (reduce || !fine) return;
+
+  // cursor spotlight
+  const spot = document.querySelector('.spot');
+  addEventListener('pointermove', e => { spot.style.setProperty('--cx', e.clientX + 'px'); spot.style.setProperty('--cy', e.clientY + 'px'); }, {passive:true});
+
+  // profile card follows pointer
+  const card = document.getElementById('card'), about = document.getElementById('about');
+  about.addEventListener('pointermove', e => {
+    const r = about.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+    card.style.setProperty('--ry', (x * 30) + 'deg'); card.style.setProperty('--rx', (-y * 22) + 'deg');
+    const c = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX - c.left) / c.width * 100) + '%');
+    card.style.setProperty('--my', ((e.clientY - c.top) / c.height * 100) + '%');
+  });
+  about.addEventListener('pointerleave', () => { card.style.setProperty('--ry','14deg'); card.style.setProperty('--rx','-8deg'); });
+
+  // tilt + glare cards
+  document.querySelectorAll('[data-tilt]').forEach(el => {
+    el.addEventListener('pointermove', e => {
+      const r = el.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      el.style.setProperty('--ry', ((x - .5) * 10) + 'deg'); el.style.setProperty('--rx', (-(y - .5) * 10) + 'deg');
+      el.style.setProperty('--gx', x * 100 + '%'); el.style.setProperty('--gy', y * 100 + '%');
+    });
+    el.addEventListener('pointerleave', () => { el.style.setProperty('--ry','0deg'); el.style.setProperty('--rx','0deg'); });
+  });
+
+  // magnetic buttons
+  document.querySelectorAll('[data-magnet]').forEach(b => {
+    b.addEventListener('pointermove', e => {
+      const r = b.getBoundingClientRect();
+      b.style.transform = `translate(${(e.clientX - r.left - r.width/2) * .2}px,${(e.clientY - r.top - r.height/2) * .3}px)`;
+    });
+    b.addEventListener('pointerleave', () => b.style.transform = '');
+  });
+})();
+</script>
+
+<!-- WebGL hero: floating red, blue and white dot sphere, orbit rings and particle field -->
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+
+const canvas = document.getElementById('gl');
+const hero = document.querySelector('.hero');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+let renderer;
+try { renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true}); }
+catch { canvas.remove(); throw new Error('WebGL unavailable'); }
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, 1, .1, 100);
+camera.position.set(0, 0, 9);
+
+const root = new THREE.Group(); scene.add(root);
+const orbGroup = new THREE.Group(); root.add(orbGroup);
+
+const noise = `
+vec3 mod289(vec3 x){return x-floor(x*(1./289.))*289.;}
+vec4 mod289(vec4 x){return x-floor(x*(1./289.))*289.;}
+vec4 permute(vec4 x){return mod289(((x*34.)+1.)*x);}
+vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-.85373472095314*r;}
+float snoise(vec3 v){
+  const vec2 C=vec2(1./6.,1./3.);const vec4 D=vec4(0.,.5,1.,2.);
+  vec3 i=floor(v+dot(v,C.yyy));vec3 x0=v-i+dot(i,C.xxx);
+  vec3 g=step(x0.yzx,x0.xyz);vec3 l=1.-g;vec3 i1=min(g.xyz,l.zxy);vec3 i2=max(g.xyz,l.zxy);
+  vec3 x1=x0-i1+C.xxx;vec3 x2=x0-i2+C.yyy;vec3 x3=x0-D.yyy;
+  i=mod289(i);
+  vec4 p=permute(permute(permute(i.z+vec4(0.,i1.z,i2.z,1.))+i.y+vec4(0.,i1.y,i2.y,1.))+i.x+vec4(0.,i1.x,i2.x,1.));
+  float n_=.142857142857;vec3 ns=n_*D.wyz-D.xzx;
+  vec4 j=p-49.*floor(p*ns.z*ns.z);vec4 x_=floor(j*ns.z);vec4 y_=floor(j-7.*x_);
+  vec4 x=x_*ns.x+ns.yyyy;vec4 y=y_*ns.x+ns.yyyy;vec4 h=1.-abs(x)-abs(y);
+  vec4 b0=vec4(x.xy,y.xy);vec4 b1=vec4(x.zw,y.zw);
+  vec4 s0=floor(b0)*2.+1.;vec4 s1=floor(b1)*2.+1.;vec4 sh=-step(h,vec4(0.));
+  vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;
+  vec3 p0=vec3(a0.xy,h.x);vec3 p1=vec3(a0.zw,h.y);vec3 p2=vec3(a1.xy,h.z);vec3 p3=vec3(a1.zw,h.w);
+  vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));
+  p0*=norm.x;p1*=norm.y;p2*=norm.z;p3*=norm.w;
+  vec4 m=max(.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.);m=m*m;
+  return 42.*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));
+}`;
+
+// floating dot sphere: red, blue and white dots that drift on and around a sphere
+const uniforms = { uTime:{value:0}, uPR:{value:Math.min(devicePixelRatio, 2)} };
+const DOTS = 2600, R0 = 2.1;
+const dPos = new Float32Array(DOTS * 3), dCol = new Float32Array(DOTS * 3), dRnd = new Float32Array(DOTS * 3);
+const palette = [new THREE.Color('#2f7bff'), new THREE.Color('#5aa2ff'), new THREE.Color('#ff3355'), new THREE.Color('#ffffff')];
+const weights = [.34, .22, .24, .20];
+for (let i = 0; i < DOTS; i++) {
+  const phi = Math.acos(1 - 2 * (i + .5) / DOTS), th = Math.PI * (1 + Math.sqrt(5)) * i;
+  const shell = R0 * (.97 + Math.random() * .06);
+  dPos.set([shell * Math.sin(phi) * Math.cos(th), shell * Math.cos(phi), shell * Math.sin(phi) * Math.sin(th)], i * 3);
+  let r = Math.random(), k = 0; while (r > weights[k]) { r -= weights[k]; k++; }
+  const c = palette[k]; dCol.set([c.r, c.g, c.b], i * 3);
+  dRnd.set([Math.random() * 6.283, .4 + Math.random() * .9, .6 + Math.random() * 1.4], i * 3); // phase, speed, size
+}
+const dg = new THREE.BufferGeometry();
+dg.setAttribute('position', new THREE.BufferAttribute(dPos, 3));
+dg.setAttribute('color', new THREE.BufferAttribute(dCol, 3));
+dg.setAttribute('aRnd', new THREE.BufferAttribute(dRnd, 3));
+const orb = new THREE.Points(dg, new THREE.ShaderMaterial({
+  uniforms, transparent:true, depthWrite:false, blending:THREE.AdditiveBlending, vertexColors:true,
+  vertexShader: noise + `
+    uniform float uTime; uniform float uPR;
+    attribute vec3 aRnd;
+    varying vec3 vCol; varying float vFade;
+    void main(){
+      vec3 dir = normalize(position);
+      float t = uTime * aRnd.y;
+      // float in and out of the sphere surface, plus a slow swirl across it
+      float breathe = sin(t + aRnd.x) * .08 + snoise(dir * 1.6 + uTime * .15) * .1;
+      vec3 swirl = vec3(sin(t * .7 + aRnd.x), cos(t * .6 + aRnd.x * 1.3), sin(t * .5 + aRnd.x * .7)) * .05;
+      vec3 p = position + dir * breathe + swirl;
+      vec4 mv = modelViewMatrix * vec4(p, 1.);
+      gl_Position = projectionMatrix * mv;
+      gl_PointSize = aRnd.z * 9. * uPR * (6. / -mv.z);
+      vec3 n = normalize(normalMatrix * dir);
+      vFade = .35 + .65 * smoothstep(-.6, .7, n.z);   // dots on the far side are dimmer
+      vCol = color;
+    }`,
+  fragmentShader: `
+    varying vec3 vCol; varying float vFade;
+    void main(){
+      float d = length(gl_PointCoord - .5);
+      if (d > .5) discard;
+      float core = smoothstep(.5, .1, d);
+      float glow = smoothstep(.5, .0, d) * .6;
+      gl_FragColor = vec4(vCol * (core + glow), (core * .9 + glow * .4) * vFade);
+    }`
+}));
+orbGroup.add(orb);
+
+// soft inner glow so the dot sphere reads as a round body
+const glowTex = (() => {
+  const c = document.createElement('canvas'); c.width = c.height = 128;
+  const g = c.getContext('2d'), gr = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+  gr.addColorStop(0, 'rgba(90,162,255,.55)'); gr.addColorStop(.45, 'rgba(47,123,255,.18)'); gr.addColorStop(.75, 'rgba(255,51,85,.06)'); gr.addColorStop(1, 'rgba(0,0,0,0)');
+  g.fillStyle = gr; g.fillRect(0, 0, 128, 128); return new THREE.CanvasTexture(c);
+})();
+const glow = new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex, transparent:true, depthWrite:false, blending:THREE.AdditiveBlending}));
+glow.scale.setScalar(6.2);
+orbGroup.add(glow);
+
+const mkRing = (r, color, op) => new THREE.Mesh(
+  new THREE.TorusGeometry(r, .014, 16, 240),
+  new THREE.MeshBasicMaterial({color, transparent:true, opacity:op})
+);
+const ring1 = mkRing(3.1, 0x5aa2ff, .7); ring1.rotation.set(1.25, .2, 0);
+const ring2 = mkRing(3.45, 0xff3355, .75); ring2.rotation.set(1.6, -.6, .3);
+const ring3 = mkRing(2.85, 0x8cc8ff, .35); ring3.rotation.set(.3, 1.2, 0);
+orbGroup.add(ring1, ring2, ring3);
+
+const moons = [];
+[[0xff3355, 3.1, ring1], [0x8cc8ff, 3.45, ring2]].forEach(([c, r, parent], i) => {
+  const m = new THREE.Mesh(new THREE.SphereGeometry(.09 + i * .03, 24, 24), new THREE.MeshBasicMaterial({color:c}));
+  m.userData = {r, speed: .6 - i * .2}; parent.add(m); moons.push(m);
+});
+
+// particle field
+const N = 2200, pos = new Float32Array(N * 3), col = new Float32Array(N * 3);
+const blue = new THREE.Color('#5aa2ff'), redC = new THREE.Color('#ff3355'), white = new THREE.Color('#d6e8ff');
+for (let i = 0; i < N; i++) {
+  const r = 4 + Math.random() * 12, t = Math.random() * Math.PI * 2, p = Math.acos(2 * Math.random() - 1);
+  pos.set([r * Math.sin(p) * Math.cos(t), r * Math.cos(p) * .6, r * Math.sin(p) * Math.sin(t) - 3], i * 3);
+  const c = Math.random() < .18 ? redC : Math.random() < .5 ? blue : white;
+  col.set([c.r, c.g, c.b], i * 3);
+}
+const pg = new THREE.BufferGeometry();
+pg.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+pg.setAttribute('color', new THREE.BufferAttribute(col, 3));
+const stars = new THREE.Points(pg, new THREE.PointsMaterial({size:.045, vertexColors:true, transparent:true, opacity:.85, depthWrite:false, blending:THREE.AdditiveBlending}));
+root.add(stars);
+
+function resize(){
+  const w = hero.clientWidth, h = hero.clientHeight;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h; camera.updateProjectionMatrix();
+  const wide = w > 960;
+  orbGroup.position.set(wide ? 2.9 : 1.3, wide ? .1 : 3.2, 0);
+  orbGroup.scale.setScalar(wide ? 1 : .55);
+}
+resize(); addEventListener('resize', resize);
+
+let tx = 0, ty = 0, mx = 0, my = 0;
+addEventListener('pointermove', e => { tx = e.clientX / innerWidth - .5; ty = e.clientY / innerHeight - .5; }, {passive:true});
+
+let running = true;
+new IntersectionObserver(([e]) => running = e.isIntersecting).observe(hero);
+
+const clock = new THREE.Clock();
+function frame(){
+  const t = clock.getElapsedTime();
+  if (running) {
+    uniforms.uTime.value = t;
+    mx += (tx - mx) * .05; my += (ty - my) * .05;
+    orbGroup.rotation.y = t * .15 + mx * .8;
+    orbGroup.rotation.x = my * .5;
+    orb.rotation.y = t * .12; orb.rotation.z = Math.sin(t * .2) * .15;
+    ring1.rotation.z = t * .4; ring2.rotation.z = -t * .3; ring3.rotation.z = t * .2;
+    moons.forEach(m => { const a = t * m.userData.speed * 2; m.position.set(Math.cos(a) * m.userData.r, Math.sin(a) * m.userData.r, 0); });
+    stars.rotation.y = t * .02 + mx * .15; stars.rotation.x = my * .08;
+    renderer.render(scene, camera);
+  }
+  if (!reduce) requestAnimationFrame(frame);
+}
+frame();
+</script>
+</body>
+</html>

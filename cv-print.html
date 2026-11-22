@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vernon Mosterd · CV</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+@page{size:A4;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0d1633;--ink-2:#45507a;--ink-3:#7c86a8;--line:#dbe4f7;--gold:#1f5fe0;--red:#e0294a;--gold-soft:#e8f0ff;--dark:#071640;
+  --serif:"Instrument Serif",Georgia,serif;--sans:"Inter Tight",system-ui,sans-serif;--mono:"JetBrains Mono",Consolas,monospace}
+body{font-family:var(--sans);color:var(--ink);font-size:8.9pt;line-height:1.42;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:210mm;height:297mm;display:grid;grid-template-columns:64mm 1fr;overflow:hidden;page-break-after:always}
+.page:last-child{page-break-after:auto}
+aside{background:linear-gradient(170deg,#0c2a7a 0%,#071640 45%,#050f30 100%);color:#e9ebef;padding:12mm 8mm 10mm 10mm;position:relative}
+aside::before{content:"";position:absolute;inset:0;background:radial-gradient(240px 200px at 90% 0%,rgba(255,51,85,.28),transparent 70%),radial-gradient(260px 240px at 0% 100%,rgba(47,123,255,.35),transparent 70%)}
+aside>*{position:relative}
+main{padding:12mm 12mm 10mm 10mm}
+.mono-mark{font-family:"Space Grotesk",var(--sans);font-weight:700;font-size:34pt;line-height:.9;letter-spacing:-.04em;background:linear-gradient(100deg,#8cc8ff,#2f7bff 45%,#ff3355);-webkit-background-clip:text;background-clip:text;color:transparent}
+.name{font-family:"Space Grotesk",var(--sans);font-weight:700;font-size:26pt;line-height:1;margin:0 0 3mm;letter-spacing:-.035em}
+.name em{font-style:normal;background:linear-gradient(100deg,#1f5fe0,#2f7bff 40%,#e0294a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.title{font-size:10.5pt;font-weight:600;color:var(--ink)}
+.title span{color:var(--ink-2);font-weight:400}
+h2{font-family:var(--mono);font-size:7.4pt;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:6mm 0 2.4mm;display:flex;align-items:center;gap:3mm}
+h2::after{content:"";flex:1;height:1px;background:var(--line)}
+aside h2{color:#8cc8ff;margin-top:4.6mm}
+h2::before{content:"";width:3mm;height:1.2pt;background:var(--red);order:-1}
+aside h2::after{background:rgba(255,255,255,.12)}
+.contact div{margin-bottom:2mm;font-size:8.4pt;color:#d6e4ff;word-break:break-word}
+.contact b{display:block;font-family:var(--mono);font-weight:400;font-size:6.6pt;letter-spacing:.12em;text-transform:uppercase;color:#ff8da1}
+.sk{margin-bottom:2.3mm}
+.sk b{display:block;font-size:8.4pt;color:#fff;font-weight:600;margin-bottom:.6mm}
+.sk span{font-size:8pt;color:#b9c8ec;line-height:1.45}
+.stat{display:flex;align-items:baseline;gap:2.5mm;margin-bottom:1.6mm}
+.stat .n{font-family:"Space Grotesk",var(--sans);font-weight:700;font-size:16pt;color:#fff;line-height:1;min-width:13mm}
+.stat .t{font-size:8pt;color:#b9c8ec;line-height:1.3}
+.summary{color:var(--ink-2);font-size:9.4pt;margin-top:3.4mm}
+.job{margin-bottom:2.6mm}
+.job .hd{display:flex;justify-content:space-between;align-items:baseline;gap:4mm}
+.job h3{font-size:10.2pt;font-weight:600}
+.job .when{font-family:var(--mono);font-size:7.6pt;color:var(--gold);white-space:nowrap}
+.job .org{font-size:8.4pt;color:var(--ink-3);margin-bottom:1.2mm}
+ul{list-style:none}
+li{padding-left:3.6mm;position:relative;margin-bottom:.9mm;color:var(--ink-2)}
+li::before{content:"";position:absolute;left:0;top:.62em;width:2mm;height:1pt;border-radius:1pt;background:linear-gradient(90deg,var(--gold),var(--red))}
+.proj{border:1px solid var(--line);border-left:2.2pt solid var(--gold);border-radius:3mm;padding:2.4mm 3.4mm;margin-bottom:2mm;break-inside:avoid}
+.proj .hd{display:flex;justify-content:space-between;align-items:baseline;gap:3mm}
+.proj h3{font-size:9.8pt;font-weight:600}
+.proj .badge{font-family:var(--mono);font-size:6.4pt;letter-spacing:.1em;text-transform:uppercase;color:var(--red);white-space:nowrap}
+.proj p{color:var(--ink-2);margin:.8mm 0 1mm}
+.tags{display:flex;flex-wrap:wrap;gap:1.2mm;margin-top:1.2mm}
+.tags span{font-family:var(--mono);font-size:6.8pt;background:var(--gold-soft);color:#1a3f99;padding:.5mm 1.6mm;border-radius:1mm}
+.edu-row{display:flex;justify-content:space-between;gap:3mm;margin-bottom:1.6mm}
+.edu-row span{color:var(--ink-2)}
+.edu-row i{font-style:normal;font-family:var(--mono);font-size:7.6pt;color:var(--ink-3)}
+.how{display:grid;grid-template-columns:1fr 1fr;gap:2mm 5mm}
+.how div{font-size:8.6pt;color:var(--ink-2)}
+.how b{color:var(--ink)}
+.foot{font-family:var(--mono);font-size:6.8pt;color:var(--ink-3);margin-top:3mm}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="page">
+  <aside>
+    <div class="mono-mark">VM</div>
+    <h2>Contact</h2>
+    <div class="contact">
+      <div><b>Email · preferred</b>vernon.mosterd@gmail.com</div>
+      <div><b>Portfolio</b>github.com/BoetaV</div>
+      <div><b>Location</b>Kariega, Eastern Cape · remote / hybrid · SAST (UTC+2)</div>
+    </div>
+
+    <h2>At a glance</h2>
+    <div class="stat"><div class="n">28+</div><div class="t">years in health IT and information systems</div></div>
+    <div class="stat"><div class="n">15+</div><div class="t">systems built with Claude Code</div></div>
+    <div class="stat"><div class="n">500+</div><div class="t">commits on one live platform</div></div>
+    <div class="stat"><div class="n">5</div><div class="t">GitHub Actions pipelines built</div></div>
+
+    <h2>Skills</h2>
+    <div class="sk"><b>Languages</b><span>TypeScript, JavaScript, Python, SQL, HTML/CSS</span></div>
+    <div class="sk"><b>Front end</b><span>React, Next.js (App Router), Vite, Tailwind CSS, shadcn/ui, TanStack Query, react-hook-form, Zod, Recharts</span></div>
+    <div class="sk"><b>UI &amp; accessibility</b><span>WCAG 2.1 AA, responsive mobile-first design, i18n (4 languages), offline-first, CSS 3D and motion, Three.js</span></div>
+    <div class="sk"><b>Back end &amp; data</b><span>PostgreSQL, PostGIS, MySQL, Redis; FastAPI, SQLAlchemy, Alembic; Node.js; REST APIs</span></div>
+    <div class="sk"><b>CI/CD &amp; infra</b><span>GitHub Actions, Docker Compose, Nginx, Caddy, Railway, GitHub Pages, pnpm + Turborepo</span></div>
+    <div class="sk"><b>Identity &amp; security</b><span>Microsoft Entra ID (MSAL), JWT, RBAC with scope checks, audit trails, POPIA</span></div>
+    <div class="sk"><b>AI engineering</b><span>Claude Code (CLAUDE.md, skills, subagents, MCP servers), Anthropic API, n8n</span></div>
+  </aside>
+
+  <main>
+    <h1 class="name">Vernon <em>Mosterd</em></h1>
+    <div class="title">Full-Stack &amp; Frontend Engineer · AI-Assisted Delivery <span>· Claude Code · Regulated industries</span></div>
+    <p class="summary">Full-stack engineer and digital-health lead with a strong frontend focus, who designs, builds and runs production web systems end to end: accessible, responsive React and Next.js interfaces in TypeScript and Tailwind, Python and Node services, PostgreSQL data models, GitHub Actions pipelines and Microsoft Entra ID sign-in. Claude Code is my core engineering tool. I write the spec, steer the agent, review every diff and own the result in production. Twenty-eight years in regulated public-sector health IT keep security, data quality and clear writing first.</p>
+
+    <h2>Experience</h2>
+    <div class="job">
+      <div class="hd"><h3>eHealth Project Lead</h3><span class="when">2025 – Present</span></div>
+      <div class="org">Eastern Cape Department of Health (seconded)</div>
+      <ul>
+        <li>Lead the design and delivery of provincial digital-health systems, from business case and requirements to go-live and support.</li>
+        <li>Build production applications hands-on with Claude Code: React/Next.js TypeScript front ends, FastAPI and Node, PostgreSQL, CI/CD in GitHub Actions.</li>
+        <li>Design user-facing screens with clinicians, applicants and admin staff, iterating on clickable prototypes before build.</li>
+        <li>Work on both greenfield builds and live systems, shipping steady changes to a public platform with real users.</li>
+        <li>Assess each need as build, buy, integrate or extend across the application portfolio, saving time and budget.</li>
+        <li>Run functional, integration and user-acceptance testing across facilities; member of the provincial HMS2 implementation team.</li>
+      </ul>
+    </div>
+    <div class="job">
+      <div class="hd"><h3>Acting District Manager</h3><span class="when">2004 – Present (acting periods)</span></div>
+      <div class="org">Sarah Baartman District, Eastern Cape Department of Health</div>
+      <ul>
+        <li>Full delegated authority over HR, finance, supply chain and clinical operations for district hospitals and clinics.</li>
+        <li>Led the district COVID-19 response (2020) and vaccine rollout (2021); Makana was ranked the top vaccination sub-district nationally.</li>
+        <li>Accountable for Auditor-General findings, internal control, parliamentary questions and PAIA requests.</li>
+      </ul>
+    </div>
+    <div class="job">
+      <div class="hd"><h3>Deputy Director: District Health Information Systems</h3><span class="when">2006 – Present</span></div>
+      <div class="org">Eastern Cape Department of Health</div>
+      <ul>
+        <li>Own the quality, flow and use of health data for a whole district, from facility capture to provincial submission.</li>
+        <li>Rolled out and supported national systems (DHIS2/WebDHIS, TIER.Net, HPRS, EVDS, SVS) and trained staff at every level.</li>
+        <li>Built the reports, dashboards and data-quality checks that management uses to make decisions.</li>
+      </ul>
+    </div>
+    <div class="job">
+      <div class="hd"><h3>HMIS / DHIS Facilitator (National)</h3><span class="when">2008 – 2009</span></div>
+      <div class="org">Health Information Systems Program (HISP)</div>
+      <ul><li>Ran the national PHC database: validation, monthly submissions from all provinces and changes to the National Indicator Data Set.</li></ul>
+    </div>
+    <div class="job">
+      <div class="hd"><h3>Earlier career</h3><span class="when">1989 – 2006</span></div>
+      <ul>
+        <li>Assistant Director: Information Management (acting), ECDoH, 2003–2006.</li>
+        <li>Computer Operator / IT Technician, ECDoH, 1998–2006: mainframe, servers, WAN, backups and user support.</li>
+        <li>Assistant Manager, Transnet, 1989–1997.</li>
+      </ul>
+    </div>
+  </main>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+  <aside>
+    <div class="mono-mark">VM</div>
+    <h2>How I work</h2>
+    <div class="sk"><b>Spec first</b><span>Requirements traced to IDs; phased delivery with a review gate after each phase.</span></div>
+    <div class="sk"><b>Repo rules</b><span>Every repository has a CLAUDE.md: stack, source of truth, what to ask before changing.</span></div>
+    <div class="sk"><b>Gates in CI</b><span>Tests, type checks, migration drift and dependency audits on every push.</span></div>
+    <div class="sk"><b>Safe by default</b><span>Synthetic data only in code and tests; nothing deploys or sends without approval.</span></div>
+
+    <h2>Testing</h2>
+    <div class="sk"><span>Playwright E2E, Vitest, pytest, integration tests on real Postgres, UAT across sites</span></div>
+
+    <h2>Health information</h2>
+    <div class="sk"><span>DHIS2/WebDHIS, TIER.Net, HMS2, HPRS, EVDS, SVS, Master Facility List, NIDS</span></div>
+
+    <h2>Education</h2>
+    <div class="sk"><b>BA Health Sciences &amp; Social Services</b><span>UNISA, 2018 · Major: Psychology</span></div>
+    <div class="sk"><b>Business Management Certificate</b><span>Rand Afrikaans University (now UJ), 1993</span></div>
+    <div class="sk"><b>Accelerated Management Development</b><span>Transnet Management School, 1993</span></div>
+    <div class="sk"><b>Certificates</b><span>Risk Management (2014) · PEPFAR HMIS (2010) · M&amp;E Fundamentals, NDoH/Jhpiego (2005)</span></div>
+
+    <h2>Languages</h2>
+    <div class="sk"><span>English · Afrikaans · isiXhosa</span></div>
+
+    <h2>Leadership</h2>
+    <div class="sk"><span>Strategic planning, governance, vendor and stakeholder management, labour relations, coaching.</span></div>
+  </aside>
+
+  <main>
+    <h2 style="margin-top:0">Selected projects · built with Claude Code</h2>
+
+    <div class="proj">
+      <div class="hd"><h3>Nursing College Admissions Platform</h3><span class="badge">● Live</span></div>
+      <p>Public online application and selection system for the 2027 intake of the provincial college of nursing.</p>
+      <ul>
+        <li>Applicant portal, staff dashboard and automated emails from application received to admission offer.</li>
+        <li>Tuned for load with server-side pagination, counts in the database and pooled connections; backups with 120-day retention.</li>
+      </ul>
+      <div class="tags"><span>Next.js</span><span>TypeScript</span><span>Tailwind</span><span>FastAPI</span><span>PostgreSQL</span><span>Docker</span><span>500+ commits</span></div>
+    </div>
+
+    <div class="proj">
+      <div class="hd"><h3>Mental Health Information Platform · Forensic Module</h3><span class="badge">Justice + Health</span></div>
+      <p>Shared court-to-hospital workflow: referral, admission, assessment and discharge, with strict separation of roles and data.</p>
+      <ul><li>GitHub Actions CI runs the test suite and an <code>alembic check</code> gate that blocks schema drift; server-side PDFs.</li></ul>
+      <div class="tags"><span>Next.js</span><span>TypeScript</span><span>FastAPI</span><span>SQLAlchemy</span><span>Alembic</span><span>pytest</span><span>GitHub Actions</span></div>
+    </div>
+
+    <div class="proj">
+      <div class="hd"><h3>Patient-Voice Platform</h3><span class="badge">In build</span></div>
+      <p>Mobile-first citizen app for complaints and compliments, plus a staff console to resolve every case on time.</p>
+      <ul><li>Accessible to WCAG 2.1 AA, four languages, offline queue for rural connections; staff sign-in with Microsoft Entra ID; CI with Postgres integration tests.</li></ul>
+      <div class="tags"><span>React</span><span>Vite</span><span>pnpm</span><span>Turborepo</span><span>MSAL / Entra ID</span><span>PostgreSQL</span></div>
+    </div>
+
+    <div class="proj">
+      <div class="hd"><h3>Perinatal Mortality System</h3><span class="badge">In build</span></div>
+      <p>Cloud, multi-user rebuild of a national desktop tool for maternal and perinatal death audits; every feature traced to a requirement ID.</p>
+      <div class="tags"><span>Next.js</span><span>TypeScript</span><span>Playwright E2E</span><span>Multi-job CI</span><span>PostgreSQL</span></div>
+    </div>
+
+    <div class="proj">
+      <div class="hd"><h3>Payment Authorisation Governance</h3><span class="badge">Finance</span></div>
+      <p>Weekly salary and creditor payment authorisations per institution, daily captures, cycle closes and PDF reports; JWT auth with role and scope checks.</p>
+      <div class="tags"><span>Next.js</span><span>FastAPI</span><span>psycopg 3</span><span>Recharts</span><span>Railway</span></div>
+    </div>
+
+    <div class="proj">
+      <div class="hd"><h3>Ambulance Call-Taking &amp; Dispatch</h3><span class="badge">Prototype</span></div>
+      <p>Takes emergency requests from phone, WhatsApp and other channels, finds the nearest available ambulance and tracks it to the patient.</p>
+      <div class="tags"><span>FastAPI</span><span>PostGIS</span><span>Alembic</span><span>Node.js</span><span>pytest</span></div>
+    </div>
+
+    <div class="proj">
+      <div class="hd"><h3>Claude-Powered Automation Suite</h3><span class="badge">AI automation</span></div>
+      <p>Ten n8n workflows on the Anthropic API: lead qualifying, AI quotes, after-hours assistant, invoice chasing and briefings, with consent and POPIA rules built in.</p>
+      <div class="tags"><span>Anthropic API</span><span>n8n</span><span>Webhooks</span><span>Twilio</span></div>
+    </div>
+
+    <p style="color:var(--ink-2);font-size:8.6pt;margin:1mm 0 0"><b style="color:var(--ink)">Also built:</b> digital anaesthetic record feeding the DHIS theatre report · digital facility register · nursing attendance register deployed by GitHub Actions to GitHub Pages · stock ledger · rugby match-tagging app (Vitest, Playwright, Redis) · law-firm site with a Claude assistant.</p>
+
+    <div class="foot">References available on request · Interactive 3D online CV and portfolio: github.com/BoetaV</div>
+  </main>
+</div>
+</body>
+</html>
